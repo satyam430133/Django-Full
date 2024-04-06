@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>evenOdd</title>
+    <style>
+        input,button{
+            padding: 20px;
+            font-size: larger;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        {% if error %}
+        <div>
+            <input style="color: red;" type="text" value="Please Fill the Value" />
+        </div>
+        {% endif %}
+        <input type="text" name="value" /> 
+        <br/> <br/>
+        <button type="submit"> Even | Odd </button>
+        <br/> <br/>
+        <input type="text" value="{{ans}}" />
+    </form>
+</body>
+</html>

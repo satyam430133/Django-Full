@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> marksheet </title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}    
+    <label> Math Marks </label> <br/>
+    <input type="text" name="subject1" /><br/>
+    <label> Commerce Marks </label><br/>
+    <input type="text" name="subject2" /><br/>
+    <label> Bio Marks </label><br/>
+    <input type="text" name="subject3" /><br/> <br/> 
+        <button type="submit"> Get Score !! </button><br/><br/>
+    </form>
+    <label> Total </label><br/>
+    <input type="text" value="{{total}}"/><br/>
+    <label> Percentage </label><br/>
+    <input type="text" value="{{percentage}}"/><br/>
+    <label> Grade </label><br/>
+    <input type="text" value="{{grade}}"/>
+</body>
+</html>

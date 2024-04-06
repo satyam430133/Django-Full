@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        {% for n in clist %}
+        <div> {{forloop.counter}} {{n}} </div>
+        {% endfor %}
+    </div>
+    <br>
+    <table border="2" padding="self"> 
+        <tr>
+            <th> Name </th>
+            <th> Phone Number </th>
+        </tr>
+            {% for n in student_details %}
+        <tr>
+            <td> {{n.name}} </td>
+            <td> {{n.phone}} </td>
+        </tr>
+            {% endfor %}
+    </table>
+    <div>
+      {% if num1|length > 0 %}  
+        {% for n in num1 %}
+            <!-- <div> {{n}} </div> -->
+            {% if n > 30 %}
+            <p> {{ n }} </p>
+            {% endif %}
+        {% endfor %}
+        {% else %}
+            <p> No Data Found </p>
+        {% endif %}
+
+    </div>
+</body>
+</html>

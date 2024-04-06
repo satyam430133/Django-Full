@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .okay{
+            height: 400px;
+            width: 100%;
+            display: flex;
+        }
+        .okay div{
+
+            height: 300px;
+            width: 300px;
+            border-radius: 5px;
+            border: solid 2px red;
+        }
+    </style>
+</head>
+<body>
+
+    <br/> <br/> <br/>
+    <div>
+        <form method="POST" >
+            {% csrf_token %}
+            <input type="text" name="search" value="{{searchfill}}" >
+            <button type="submit"> Search </button>
+        </form>
+    </div>
+    <br/> <br/> <br/>
+
+    <div class="okay">
+    {% for i in serviceData %}
+    <div>
+        <img src="..." alt="{{i.service_icon}}" />
+        <h3> {{i.service_title}} </h3>
+        <p> {{i.service_des}} </p>
+    </div>
+
+    {% empty %}
+
+    <div style="color: red; line-height: 240px;">
+        <h1>
+            NO DATA FOUND !!
+        </h1>
+    </div>
+
+    {% endfor %} 
+    </div>
+
+    {% for n in newsinfo %}
+
+    <div>
+        <marquee behavior="srcoll" direction="right" onmouseenter="stop()" onmouseleave="start()" >
+            <a href="newsdetails/{{n.id}}"> {{n.news_title}} </a>
+        </marquee>
+    </div>
+
+    {% endfor %}
+
+
+</body>
+</html>

@@ -1,0 +1,224 @@
+html{
+    overflow-x: hidden;
+}
+body{
+    margin: 0;
+    background-color: black;
+    color: white;
+    background-image: url(https://wallpaperbat.com/img/122257-developer-wallpaper-top-free-developer-background.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+#navbar{
+    height: 140px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: larger;
+    gap: 10%;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: black;
+}
+.navlist ul li{
+    display: inline;
+    padding: 20px;
+}
+.navlist ul li a{
+    text-decoration: none;
+    color: white;
+}
+.navlist ul li{
+    list-style: none;
+}
+.navlogo a img{
+    height: 90px;
+}
+#blank{
+    height: 712px;
+    width: 100%;
+}
+#sign{
+    height: 314px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #ffba31;
+}
+#signchild{
+    font-size: larger;
+    width: 700px;
+}
+#cards{
+    height: 600px;
+    background-color: #0d2f4b;
+    padding: 50px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+    gap: 10%;
+    align-items: center;
+}
+#cards div{
+    height: 500px;
+    width: 300px;
+    border: solid 2px;
+}   
+#footer{
+    height: 500px;
+    padding: 50px;
+}
+#socialmedia{
+    height: 150px;
+    display: flex;
+    justify-content: center;
+}
+#socialmedia li{
+    width: 80px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-items: start;
+    gap: 20PX;
+    border-bottom: dashed 1px;
+}
+#socialmedia li{
+    list-style: none;
+}
+#socialmedia li a{
+    text-decoration: none;
+    color: #ffba31;
+}
+#footerheading{
+    display: grid;
+    justify-content: center;
+}
+#footerheading div{
+    height: auto;
+    width: 600px;
+    text-align: center;
+    border-top: solid 1px white;
+}
+#footersignin{
+    display: grid;
+    justify-content: center;
+}
+#footersigninheading div{
+    display: flex;
+}
+#footersignin input{
+    height: 40px;
+    width: 500px;
+    border-radius: 50px;
+    background-color: transparent;
+    text-align: center;
+}
+#footersignin button{
+    height: 45px;
+    border-radius: 50px;
+    width: 100px;
+}
+#socialheading{
+    height: 90px;
+    width: 100%;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#check,#label{
+    display: none;
+}
+#check:checked~ .navlist ul{
+    display: block;
+}
+@media only screen and (max-width: 640px) {
+    body{
+        background-size: contain;
+        width: 100%;
+    }
+    #label{
+        display: block;
+        margin-left: 10%;
+    }
+    .navlist ul{
+        display: none;
+        position: relative;
+        top: 10px;
+    }
+    .navlist ul li{
+        display: block;
+    }
+    #navbar{
+        height: auto;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        gap: 40%;
+    }
+    #blank{
+        height: 100px;
+    }
+    #sign{
+        width: 100%;
+        /* font-size: 14px; */
+        overflow: hidden;
+    }
+    #signchild p{
+        display: none;
+    }
+    #cards{
+        height: 2100px;
+        display: grid;
+        grid-template-columns: auto;
+        justify-content: center;
+        gap: 0%;
+    }
+    #socialmedia div ul{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #footerheading div{
+        height: auto;
+        width: 400px;
+        text-align: center;
+        border-top: solid 1px white;
+    }
+    #footersignin{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    #footersignin button{
+        width: 200px;
+    }
+    #footersignin input{
+        width: 300px;
+    }
+
+
+
+
+}
