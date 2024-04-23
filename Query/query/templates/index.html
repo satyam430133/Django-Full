@@ -26,5 +26,19 @@
             <p> {{i.newsInfo}} </p>
         </div>
     {% endfor %}
+    <p>
+       Name = {{entry.Name}} <br/>
+       City = {{entry.City}} <br/>
+       Email = {{entry.Email}} <br/>
+       Contact = {{entry.Contact}} <br/>
+    </p>
+    {% for i in filterrr %}
+    <p>
+        Name = {{i.Name}} <br/>
+        City = {{i.City}} <br/>
+        Email = {{i.Email}} <br/>
+        Contact = {{i.Contact}} <br/>
+     </p>
+    {% endfor %}
 </body>
 </html> 

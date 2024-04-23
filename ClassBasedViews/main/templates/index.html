@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #okay{
+            display: grid;
+            grid-template-columns: auto auto auto;
+            gap: 3%;
+        }
+        #okay div{
+            height: 400px;
+            width: 400px;
+            margin-left: 1%;
+            border: solid 1px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <h1> 
+        Running
+    </h1>
+    <div id="okay">
+        {% for i in movielist %}
+
+    <div>
+        <p> {{i.Name}} </p>
+        <p> {{i.ReleaseDate}} </p>
+        <p> {{i.Rating}} </p>
+        <p> {{i.Desc}} </p>
+    </div>
+
+    {% endfor %}
+    </div>
+</body>
+</html>
