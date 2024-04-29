@@ -2,7 +2,7 @@
 from rest_framework import serializers
 
 # import model from models.py
-from .models import MovieModel,StudentModel
+from .models import *
 
 # ----------------------ModelSerializer-------------------
 # The ModelSerializer class is the same as a regular Serializer class, except that:
@@ -19,3 +19,17 @@ class StudentSerializer(serializers.ModelSerializer):
 		model = StudentModel
 		fields = ('id','name', 'email','city')
 
+class ArtStudentSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = StudentModel
+		fields = ('id','name', 'email','city')
+
+class BioStudentSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = StudentModel
+		fields = ('id','name', 'email','city')
+
+class MathStudentSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = StudentModel
+		fields = ('id','name', 'email','city')

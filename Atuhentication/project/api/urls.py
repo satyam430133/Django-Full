@@ -9,6 +9,9 @@ from .views import *
 router = routers.DefaultRouter()
 router.register(r'movie', MovieViewSet)
 router.register(r'student', StudentViewSet)
+router.register(r'artstudent', ArtStudentViewSet)
+router.register(r'biostudent', BioStudentViewSet)
+router.register(r'mathstudent', MathStudentViewSet)
   
 # specify URL Path for rest_framework
 urlpatterns = [

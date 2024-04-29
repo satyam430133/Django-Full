@@ -12,3 +12,24 @@ class StudentModel(models.Model):
     city = models.CharField(max_length=100)
     def __str__(self):
         return self.name
+    
+class BioStudentModel(models.Model):
+    name = models.CharField(max_length = 200)
+    email = models.EmailField()
+    city = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name
+    
+class ArtStudentModel(models.Model):
+    name = models.CharField(max_length = 200)
+    email = models.EmailField()
+    city = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name
+    
+class MathStudentModel(models.Model):
+    name = models.CharField(max_length = 200)
+    email = models.EmailField()
+    city = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name
