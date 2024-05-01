@@ -1,7 +1,7 @@
 from django.urls import include, path
-
+from rest_framework.authtoken.views import obtain_auth_token
 # import routers
-from rest_framework import routers 
+from rest_framework import routers
 # import everything from views
 from .views import *
   
@@ -16,5 +16,6 @@ router.register(r'mathstudent', MathStudentViewSet)
 # specify URL Path for rest_framework
 urlpatterns = [
     path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')) # this line is used for only login & logout feature in DRF window
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api-token-auth/', obtain_auth_token)
 ]
