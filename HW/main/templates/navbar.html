@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        nav ul{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10%;
+            font-size: larger;
+        }
+        nav ul li{
+            height: 40px;
+            width: 100px;
+            background-color: aqua;
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        nav ul li a{
+            text-decoration: none;
+            color: black;
+            font-weight: 600;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li> <a href="{% url 'index' %}"> Home </a> </li>
+            <li> <a href="{% url 'menu' %}"> Menu </a> </li>
+            <li> <a href="{% url 'about' %}"> About </a> </li>
+            <li> <a href="{% url 'contact' %}"> Contact </a> </li>
+        </ul>
+    </nav>
+</body>
+</html>
