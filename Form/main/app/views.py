@@ -1,18 +1,19 @@
 from django.shortcuts import render,HttpResponse
-from .models import *
-from django.contrib import messages
-
+from .models import InfoModel
+from app.forms import StudentForm
 # Create your views here.
 
 def Home(request):
-    return render(request, 'index.html')
+    context = {}
+    context['form'] = StudentForm
+    return render(request, 'index.html',context)
 
 def Registration(request):
    try:
         if request.method == 'POST':
-            Names = request.POST.get('name')
-            Emails = request.POST.get('email')
-            Passwords = request.POST.get('password')
+            Names = request.POST.get('Name')
+            Emails = request.POST.get('Email')
+            Passwords = request.POST.get('Password')
             if Names and Emails and Passwords != '':
                 fill = InfoModel.objects.filter(Email = Emails)
                 if fill:

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        form{
+        /* form{
             width: 300px;
             display: grid;
             gap: 5%;
@@ -17,16 +17,21 @@
         form button {
             height: 42px;
             width: 160px;
-        }
+        } */
     </style>
 </head>
 <body>
-    <form action="{% url 'register' %}" method="POST">
+    <!-- <form action="{% url 'register' %}" method="POST">
         {% csrf_token %}
         <label for="name"> Name </label> <input type="text" name="name">
         <label for="email"> Email </label> <input type="text" name="email">
         <label for="password"> Password </label> <input type="text" name="password">
         <button type="submit"> Register </button>
+    </form> -->
+    <form action="{% url 'register' %}" method="POST" >
+        {% csrf_token %}
+        {{form}}
+        <button type="submit" > Register </button>
     </form>
     <script>
             key = '{{key}}'
