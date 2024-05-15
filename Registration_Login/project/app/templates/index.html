@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +7,25 @@
     <title>Document</title>
 </head>
 <body>
-    welcome
+    {% block content %}
+
+    
+<div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="content">
+          <div class="image-container">
+            <img src="https://via.placeholder.com/400x200" alt="Management System Image">
+          </div>
+          <h2>Welcome to Our Management System</h2>
+          <p>This is the homepage of our management system. We provide various tools and features to help you manage your tasks, projects, and teams efficiently.</p>
+          <p>With our system, you can streamline your workflow, collaborate with team members, track progress, and achieve your goals effectively.</p>
+          <p>Explore the features and start managing your projects with ease!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    {% endblock %}
 </body>
 </html>

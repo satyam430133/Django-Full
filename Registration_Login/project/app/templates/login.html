@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+{% block content %}
+<body style="background-color: #f8f9fa;">
+<div style="margin-top: 120px;" >  </div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6" style="background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); margin-top: 50px;">
+      <h2 style="text-align: center; margin-bottom: 20px;">Login</h2>
+      <form action="#" method="post">
+        <div class="form-group">
+          <label for="login_email" style="font-weight: bold;">Email</label>
+          <input type="email" class="form-control" id="login_email" name="login_email" required>
+        </div>
+        <div class="form-group">
+          <label for="login_password" style="font-weight: bold;">Password</label>
+          <input type="password" class="form-control" id="login_password" name="login_password" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 10px; background-color: #007bff; border: none; color: #fff; cursor: pointer; border-radius: 4px;">Login</button>
+      </form>
+    </div>
+  </div>
+</div>
+<div style="margin-top: 140px;" ></div>
+{% endblock %}
+</body>
+</html>
