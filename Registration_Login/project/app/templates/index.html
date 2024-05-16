@@ -7,9 +7,22 @@
     <title>Document</title>
 </head>
 <body>
-    {% block content %}
-<br/> <br/>
-<div class="container">
+  {% block content %}
+  {% if alluser %}
+
+  <div style="margin-top: 180px;"></div>
+  <br/> <br/>
+  <div class="container text-center">
+    <h1 style="font-family: Arial, sans-serif; color: #333;">Welcome {{user}} </h1>
+    <br/>
+    <button class="btn btn-success btn-lg rounded-pill"> <a href="{% url 'query' pk=user.id %}" style="color: white;"> Add Query </a> </button> &nbsp;
+    <button class="btn btn-success btn-lg rounded-pill"> <a href="{% url 'show' pk=user.Email %}" style="color: white;"> Show Query </a> </button>
+  </div>
+  <br/> <br/> 
+  <div style="margin-top: 260px;"></div>
+
+  {% elif user %}
+  <div class="container"> 
     <div class="row">
       <div class="col-md-8 offset-md-2">
         <div class="content">
@@ -24,7 +37,8 @@
       </div>
     </div>
   </div>
-  <br/> <br/>
+
+  {% endif %}
   <script>
     key = '{{key}}'
     if (key != ''){

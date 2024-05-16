@@ -1,5 +1,4 @@
 from django.shortcuts import render,redirect
-from django.views.generic import TemplateView
 from .models import *
 # Create your views here.
 
@@ -30,11 +29,11 @@ def Registration(request):
 
 def Login(request):
     if request.method == 'POST':
-        loginemail = request.POST.get('login_email')
+        emails = request.POST.get('login_email')
         loginpass = request.POST.get('login_password')
-        userdata = User.objects.get(Email=loginemail)
-        if userdata.Email == loginemail:
-            user = User.objects.get(Email=loginemail)
+        userdata = User.objects.get(Email=emails)
+        if userdata.Email == emails:
+            user = User.objects.get(Email=emails)
             alluser = User.objects.all()
             msg = 'Login Successfull'
             return render(request,'index.html',{'key':msg,'user':user,'alluser':alluser})
@@ -42,3 +41,28 @@ def Login(request):
             msg = 'Not A User Register First'
             return redirect('register',{'key':msg}) 
     return render(request,'login.html')
+
+def AddQuery(request,pk):
+    user = User.objects.get(id=pk)
+    return render(request,'queryform.html',{'user':user})
+
+def SubmitQuery(request,pk):
+    user = User.objects.get(id=pk)
+    if request.method == 'POST':
+        titles = request.POST.get('title')
+        descriptions = request.POST.get('description')
+        emails = request.POST.get('email')
+        QueryModel.objects.create(Title=titles,Desc=descriptions,Email=user.Email)
+        msg = 'Query Added'
+        userdata = User.objects.get(Email=emails)
+        if userdata.Email == emails:
+            user = User.objects.get(Email=emails)
+            alluser = User.objects.all()
+            msg = 'Login Successfull'
+            return render(request,'index.html',{'key':msg,'user':user,'alluser':alluser})
+        return render(request,'index.html',{'key':msg})
+    
+def Show(request,pk):
+    print(pk)
+    showuser = QueryModel.objects.filter(Email=pk)
+    return render(request,'show.html',{'showuser':showuser})

@@ -12,3 +12,8 @@ class User(models.Model):
         verbose_name_plural = 'UserList'
     def __str__(self):
         return str(self.Name)
+    
+class QueryModel(models.Model):
+    Title = models.CharField(max_length=100)
+    Desc = models.CharField(max_length=250)
+    Email = models.EmailField()
