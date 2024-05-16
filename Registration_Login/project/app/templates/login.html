@@ -15,7 +15,8 @@
   <div class="row justify-content-center">
     <div class="col-md-6" style="background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); margin-top: 50px;">
       <h2 style="text-align: center; margin-bottom: 20px;">Login</h2>
-      <form action="#" method="post">
+      <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
         <div class="form-group">
           <label for="login_email" style="font-weight: bold;">Email</label>
           <input type="email" class="form-control" id="login_email" name="login_email" required>
@@ -30,6 +31,13 @@
   </div>
 </div>
 <div style="margin-top: 140px;" ></div>
+
+<script>
+  key = '{{key}}'
+  if (key != ''){
+  alert(key)
+  }
+</script>
 {% endblock %}
 </body>
 </html>

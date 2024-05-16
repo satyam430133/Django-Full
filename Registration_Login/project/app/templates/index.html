@@ -8,15 +8,14 @@
 </head>
 <body>
     {% block content %}
-
-    
+<br/> <br/>
 <div class="container">
     <div class="row">
       <div class="col-md-8 offset-md-2">
         <div class="content">
           <div class="image-container">
-            <img src="https://via.placeholder.com/400x200" alt="Management System Image">
-          </div>
+            <img src="https://images.pexels.com/photos/416405/pexels-photo-416405.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" height="500px" width="auto" alt="Management System Image">
+          </div><br/>
           <h2>Welcome to Our Management System</h2>
           <p>This is the homepage of our management system. We provide various tools and features to help you manage your tasks, projects, and teams efficiently.</p>
           <p>With our system, you can streamline your workflow, collaborate with team members, track progress, and achieve your goals effectively.</p>
@@ -25,7 +24,13 @@
       </div>
     </div>
   </div>
-
+  <br/> <br/>
+  <script>
+    key = '{{key}}'
+    if (key != ''){
+    alert(key)
+    }
+  </script>
     {% endblock %}
 </body>
 </html>
