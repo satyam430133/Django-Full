@@ -1,68 +1,91 @@
-from django.shortcuts import render,redirect
-from .models import *
-# Create your views here.
+from django.shortcuts import render, redirect
+from .models import User, QueryModel
 
 def home(request):
-    return render(request,'index.html')
+    return render(request, 'index.html')
 
 def Registration(request):
     if request.method == 'POST':
         unames = request.POST.get('username')
-        emails = request.POST.get('email')
+        pk = request.POST.get('email')
         phones = request.POST.get('phone')
         passwords = request.POST.get('password')
         cpass = request.POST.get('confirm_password')
-        userdata = User.objects.filter(Email=emails)
-        if userdata:
-            msg = 'User Already Exist Login'
-            return render(request,'login.html',{'key':msg})
+        userdata = User.objects.filter(Email=pk)
+        if userdata.exists():
+            msg = 'User Already Exist. Login'
+            return render(request, 'login.html', {'key': msg})
         else:
             if passwords == cpass:
-                User.objects.create(Name=unames,Email=emails,Phone_Number=phones,Password=passwords,Confirm_Password=cpass)
-                msg = "Registration Successfull"
-                return render(request,'login.html',{'key':msg})
-            msg = 'Password & Confirm Password Does Not Match'
-            return render(request,'registration.html',{'key':msg})
-        return render(request,'registration.html')
-    else:
-        return render(request,'registration.html')
+                User.objects.create(Name=unames, Email=pk, Phone_Number=phones, Password=passwords, Confirm_Password=cpass)
+                msg = "Registration Successful"
+                return render(request, 'login.html', {'key': msg})
+            msg = 'Password & Confirm Password Do Not Match'
+            return render(request, 'registration.html', {'key': msg})
+    return render(request, 'registration.html')
 
 def Login(request):
     if request.method == 'POST':
-        emails = request.POST.get('login_email')
+        pk = request.POST.get('login_email')
         loginpass = request.POST.get('login_password')
-        userdata = User.objects.get(Email=emails)
-        if userdata.Email == emails:
-            user = User.objects.get(Email=emails)
-            alluser = User.objects.all()
-            msg = 'Login Successfull'
-            return render(request,'index.html',{'key':msg,'user':user,'alluser':alluser})
-        else:
-            msg = 'Not A User Register First'
-            return redirect('register',{'key':msg}) 
-    return render(request,'login.html')
+        try:
+            userdata = User.objects.get(Email=pk)
+            if userdata.Password == loginpass:
+                alluser = User.objects.all()
+                msg = 'Login Successful'
+                return render(request, 'index.html', {'key': msg, 'user': userdata, 'alluser': alluser})
+            else:
+                msg = 'Incorrect Password'
+                return render(request, 'login.html', {'key': msg})
+        except User.DoesNotExist:
+            msg = 'Not A User. Register First'
+            return render(request, 'registration.html', {'key': msg})
+    return render(request, 'login.html')
 
-def AddQuery(request,pk):
-    user = User.objects.get(id=pk)
-    return render(request,'queryform.html',{'user':user})
+def AddQuery(request, pk):
+    queryuser = User.objects.filter(Email=pk)
+    userdata = User.objects.get(Email=pk)
+    alluser = User.objects.all()
+    return render(request, 'index.html', {'user': userdata, 'alluser': alluser, 'queryuser': queryuser})
 
-def SubmitQuery(request,pk):
+def SubmitQuery(request, pk):
     user = User.objects.get(id=pk)
     if request.method == 'POST':
         titles = request.POST.get('title')
         descriptions = request.POST.get('description')
-        emails = request.POST.get('email')
-        QueryModel.objects.create(Title=titles,Desc=descriptions,Email=user.Email)
+        QueryModel.objects.create(Title=titles, Desc=descriptions, Email=user.Email)
         msg = 'Query Added'
-        userdata = User.objects.get(Email=emails)
-        if userdata.Email == emails:
-            user = User.objects.get(Email=emails)
-            alluser = User.objects.all()
-            msg = 'Login Successfull'
-            return render(request,'index.html',{'key':msg,'user':user,'alluser':alluser})
-        return render(request,'index.html',{'key':msg})
-    
-def Show(request,pk):
-    print(pk)
+        alluser = User.objects.all()
+        return render(request, 'index.html', {'user': user, 'alluser': alluser, 'key': msg})
+
+def Show(request, pk):
     showuser = QueryModel.objects.filter(Email=pk)
-    return render(request,'show.html',{'showuser':showuser})
+    userdata = User.objects.get(Email=pk)
+    alluser = User.objects.all()
+    return render(request, 'index.html', {'user': userdata, 'alluser': alluser, 'showuser': showuser})
+
+def EditQuery(request, pk):
+    editdata = QueryModel.objects.get(id=pk)
+    userdata = User.objects.get(Email=editdata.Email)
+    alluser = User.objects.all()
+    return render(request, 'index.html', {'user': userdata, 'alluser': alluser, 'editdata': editdata})
+
+def UpdateData(request, pk):
+    query = QueryModel.objects.get(id=pk)
+    if request.method == 'POST':
+        query.Title = request.POST.get('title')
+        query.Desc = request.POST.get('description')
+        query.save()
+        msg = 'Query Updated'
+        showuser = QueryModel.objects.filter(Email=query.Email)
+        userdata = User.objects.get(Email=query.Email)
+        alluser = User.objects.all()
+        return render(request, 'index.html', {'key': msg, 'user': userdata, 'alluser': alluser, 'showuser': showuser})
+
+def DeleteQuery(request, pk, ml):
+    query = QueryModel.objects.get(id=pk)
+    query.delete()
+    showuser = QueryModel.objects.filter(Email=ml)
+    userdata = User.objects.get(Email=ml)
+    alluser = User.objects.all()
+    return render(request, 'index.html', {'user': userdata, 'alluser': alluser, 'showuser': showuser})

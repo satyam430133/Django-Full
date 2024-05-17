@@ -7,44 +7,127 @@
     <title>Document</title>
 </head>
 <body>
-  {% block content %}
-  {% if alluser %}
+    {% block content %}
+    <div style="height: auto;">
+        {% if alluser %}
+            <br/><br/>
+            <div class="container text-center">
+                <h1 style="font-family: Arial, sans-serif; color: #333;">Welcome {{ user.Name }}</h1>
+                <br/>
+                <button class="btn btn-success btn-lg rounded-pill">
+                    <a href="{% url 'query' pk=user.Email %}" style="color: white;">Add Query</a>
+                </button>&nbsp;
+                <button class="btn btn-success btn-lg rounded-pill">
+                    <a href="{% url 'show' pk=user.Email %}" style="color: white;">Show Query</a>
+                </button>
+            </div>
 
-  <div style="margin-top: 180px;"></div>
-  <br/> <br/>
-  <div class="container text-center">
-    <h1 style="font-family: Arial, sans-serif; color: #333;">Welcome {{user}} </h1>
-    <br/>
-    <button class="btn btn-success btn-lg rounded-pill"> <a href="{% url 'query' pk=user.id %}" style="color: white;"> Add Query </a> </button> &nbsp;
-    <button class="btn btn-success btn-lg rounded-pill"> <a href="{% url 'show' pk=user.Email %}" style="color: white;"> Show Query </a> </button>
-  </div>
-  <br/> <br/> 
-  <div style="margin-top: 260px;"></div>
+            {% if showuser %}
+            <div class="container py-5">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in showuser %}
+                        <tr>
+                            <td>{{ i.id }}</td>
+                            <td>{{ i.Title }}</td>
+                            <td>{{ i.Desc }}</td>
+                            <td><a href="{% url 'editquery' pk=i.id %}" class="btn btn-primary btn-sm">Edit</a></td>
+                            <td><a href="{% url 'delete' pk=i.id ml=i.Email %}" class="btn btn-danger btn-sm">Delete</a></td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endif %}
 
-  {% elif user %}
-  <div class="container"> 
-    <div class="row">
-      <div class="col-md-8 offset-md-2">
-        <div class="content">
-          <div class="image-container">
-            <img src="https://images.pexels.com/photos/416405/pexels-photo-416405.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" height="500px" width="auto" alt="Management System Image">
-          </div><br/>
-          <h2>Welcome to Our Management System</h2>
-          <p>This is the homepage of our management system. We provide various tools and features to help you manage your tasks, projects, and teams efficiently.</p>
-          <p>With our system, you can streamline your workflow, collaborate with team members, track progress, and achieve your goals effectively.</p>
-          <p>Explore the features and start managing your projects with ease!</p>
+            <br/><br/>
+
+            {% if queryuser %}
+            <div class="container form-container" style="height: auto;">
+                <h2 class="text-center mb-4">Query Form</h2>
+                <form action="{% url 'submitquery' pk=user.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title:</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description:</label>
+                        <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter description" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" class="form-control" id="email" value="{{ user.Email }}" name="email" placeholder="Enter email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" class="form-control" id="password" value="{{ user.Password }}" name="password" placeholder="Enter Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </form>
+            </div>
+            <br/>
+            {% elif editdata %}
+            <div class="container form-container" style="height: auto;">
+                <h2 class="text-center mb-4">Query Form</h2>
+                <form action="{% url 'update' pk=editdata.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title:</label>
+                        <input type="text" class="form-control" id="title" name="title" value="{{ editdata.Title }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description:</label>
+                        <textarea class="form-control" id="description" name="description" rows="3" required>{{ editdata.Desc }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" class="form-control" id="email" value="{{ user.Email }}" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" class="form-control" id="password" value="{{ user.Password }}" name="password" placeholder="Enter Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </form>
+            </div>
+            <br/>
+            {% endif %}
+        {% elif user %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="content">
+                        <div class="image-container">
+                            <img src="https://images.pexels.com/photos/416405/pexels-photo-416405.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" height="500px" width="auto" alt="Management System Image">
+                        </div><br/>
+                        <h2>Welcome to Our Management System</h2>
+                        <p>This is the homepage of our management system. We provide various tools and features to help you manage your tasks, projects, and teams efficiently.</p>
+                        <p>With our system, you can streamline your workflow, collaborate with team members, track progress, and achieve your goals effectively.</p>
+                        <p>Explore the features and start managing your projects with ease!</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+        {% endif %}
+        <script>
+            var key = '{{ key }}';
+            if (key !== '') {
+                alert(key);
+            }
+        </script>
     </div>
-  </div>
-
-  {% endif %}
-  <script>
-    key = '{{key}}'
-    if (key != ''){
-    alert(key)
-    }
-  </script>
     {% endblock %}
 </body>
 </html>
